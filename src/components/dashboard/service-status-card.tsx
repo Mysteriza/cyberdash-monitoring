@@ -14,6 +14,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 const statusConfig: Record<ServiceStatus, { text: string; className: string }> = {
   operational: { text: "Operational", className: "bg-green-500" },
@@ -67,7 +68,7 @@ export default function ServiceStatusCard() {
     <div className="space-y-4 text-center">
       <div className="flex items-center justify-center gap-2">
         <Server className="h-6 w-6 text-primary" />
-        <h2 className="text-xl font-semibold text-primary">AI & Dev Status</h2>
+        <h2 className="text-xl font-semibold text-primary">Platform Status</h2>
         <Button
           variant="ghost"
           size="icon"
@@ -81,7 +82,7 @@ export default function ServiceStatusCard() {
 
       {isLoading && !data ? (
         <div className="space-y-3">
-          {Array.from({ length: 4 }).map((_, i) => (
+          {Array.from({ length: 8 }).map((_, i) => (
             <Skeleton key={i} className="h-6 w-full" />
           ))}
         </div>
@@ -92,32 +93,34 @@ export default function ServiceStatusCard() {
         </div>
       ) : (
         <TooltipProvider>
-          <div className="space-y-3">
-            {data?.map((service) => {
-              const config = statusConfig[service.status] || statusConfig.unknown;
-              return (
-                <Tooltip key={service.name} delayDuration={0}>
-                  <TooltipTrigger asChild>
-                    <a
-                      href={service.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-between text-sm text-foreground transition-opacity hover:opacity-80"
-                    >
-                      <span>{service.name}</span>
-                      <div className="flex items-center gap-2">
-                        <span className="text-muted-foreground">{config.text}</span>
-                        <div className={cn("h-3 w-3 rounded-full shrink-0", config.className)} />
-                      </div>
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Click to visit {service.name} status page</p>
-                  </TooltipContent>
-                </Tooltip>
-              );
-            })}
-          </div>
+          <ScrollArea className="pr-3 text-left">
+            <div className="space-y-3">
+              {data?.map((service) => {
+                const config = statusConfig[service.status] || statusConfig.unknown;
+                return (
+                  <Tooltip key={service.name} delayDuration={0}>
+                    <TooltipTrigger asChild>
+                      <a
+                        href={service.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between text-sm text-foreground transition-opacity hover:opacity-80"
+                      >
+                        <span>{service.name}</span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-muted-foreground">{config.text}</span>
+                          <div className={cn("h-3 w-3 rounded-full shrink-0", config.className)} />
+                        </div>
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Click to visit {service.name} status page</p>
+                    </TooltipContent>
+                  </Tooltip>
+                );
+              })}
+            </div>
+          </ScrollArea>
         </TooltipProvider>
       )}
     </div>
