@@ -29,7 +29,7 @@ export default function HourlyForecast({ data, isLoading }: HourlyForecastProps)
     const startIndex = data.time.findIndex(t => parseISO(t) > now);
     
     if (startIndex !== -1) {
-      const forecastHours = data.time.slice(startIndex, startIndex + 12);
+      const forecastHours = data.time.slice(startIndex, startIndex + 24);
       
       forecastHours.forEach((timeStr, index) => {
         const i = startIndex + index;
@@ -49,12 +49,12 @@ export default function HourlyForecast({ data, isLoading }: HourlyForecastProps)
     <div className="space-y-3">
       <div className="flex items-center gap-2">
         <Clock className="h-5 w-5 text-foreground" />
-        <h3 className="text-lg font-semibold text-foreground">12-Hour Forecast</h3>
+        <h3 className="text-lg font-semibold text-foreground">24-Hour Forecast</h3>
       </div>
       <ScrollArea className="w-full whitespace-nowrap">
         <div className="flex w-max space-x-3 pb-4">
           {isLoading
-            ? Array.from({ length: 12 }).map((_, i) => (
+            ? Array.from({ length: 24 }).map((_, i) => (
                 <Card key={i} className="border-border/50 bg-card/50 w-28">
                   <CardContent className="flex flex-col items-center justify-center p-3 space-y-1">
                     <Skeleton className="h-5 w-10" />

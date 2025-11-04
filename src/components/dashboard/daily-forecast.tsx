@@ -14,6 +14,7 @@ type DailyForecastProps = {
 };
 
 type ProcessedDailyData = {
+  date: string;
   day: string;
   icon: ReturnType<typeof getWeatherInfo>['icon'];
   description: string;
@@ -29,6 +30,7 @@ export default function DailyForecast({ data, isLoading }: DailyForecastProps) {
     data.time.forEach((timeStr, i) => {
       const weatherInfo = getWeatherInfo(data.weather_code[i]);
       processedData.push({
+        date: timeStr,
         day: i === 0 ? 'Today' : format(parseISO(timeStr), 'EEE'),
         icon: weatherInfo.icon,
         description: weatherInfo.description,
@@ -43,12 +45,12 @@ export default function DailyForecast({ data, isLoading }: DailyForecastProps) {
     <div className="space-y-3">
       <div className="flex items-center gap-2">
         <Calendar className="h-5 w-5 text-foreground" />
-        <h3 className="text-lg font-semibold text-foreground">7-Day Forecast</h3>
+        <h3 className="text-lg font-semibold text-foreground">14-Day Forecast</h3>
       </div>
       <ScrollArea className="w-full whitespace-nowrap">
         <div className="flex w-max space-x-3 pb-4">
           {isLoading
-            ? Array.from({ length: 7 }).map((_, i) => (
+            ? Array.from({ length: 14 }).map((_, i) => (
                 <Card key={i} className="border-border/50 bg-card/50 w-32">
                   <CardContent className="flex flex-col items-center justify-center p-3 space-y-1">
                     <Skeleton className="h-5 w-10" />
@@ -60,7 +62,7 @@ export default function DailyForecast({ data, isLoading }: DailyForecastProps) {
                 </Card>
               ))
             : processedData.map((day) => (
-                <Card key={day.day} className="border-border/50 bg-card/50 w-32 shrink-0">
+                <Card key={day.date} className="border-border/50 bg-card/50 w-32 shrink-0">
                   <CardContent className="flex flex-col items-center justify-center p-3 space-y-1">
                     <div className="text-sm font-medium text-muted-foreground">{day.day}</div>
                     <day.icon className="h-8 w-8 text-primary" />
