@@ -5,7 +5,6 @@ import { Thermometer, Droplets, Gauge, AlertTriangle, type LucideIcon } from 'lu
 import { getIndoorData } from '@/lib/api';
 import DataCard from './data-card';
 import type { IndoorData } from '@/lib/types';
-import { format } from 'date-fns';
 import { SettingsContext } from '@/contexts/settings-context';
 
 export default function IndoorDataGrid() {
@@ -13,7 +12,6 @@ export default function IndoorDataGrid() {
   const [data, setData] = useState<IndoorData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -29,7 +27,6 @@ export default function IndoorDataGrid() {
         const result = await getIndoorData();
         if (isMounted) {
           setData(result);
-          setLastUpdated(new Date());
           setError(null);
         }
       } catch (e) {
@@ -114,21 +111,39 @@ export default function IndoorDataGrid() {
         }
         return value.toFixed(2);
     }
+    // Exclude boolean and string values from metric display
+    if (typeof value === 'boolean' || typeof value === 'string') {
+        return undefined;
+    }
     return value;
   }
 
   return (
     <div className="space-y-3">
-      <div className="flex items-start justify-between">
-        <div>
+      <div className="space-y-1">
+        <div className="flex items-center gap-2">
           <h2 className="text-xl font-semibold text-foreground">Indoor</h2>
-          <p className="text-xs text-muted-foreground">Source: ESP8266 + BME280 + MQ135 + Blynk API</p>
+          {!isLoading && !error && data && (
+            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium" style={{
+              backgroundColor: data.isOnline ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)',
+              color: data.isOnline ? 'rgb(34, 197, 94)' : 'rgb(239, 68, 68)'
+            }}>
+              <span className="relative flex h-2 w-2">
+                <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${data.isOnline ? 'bg-green-500' : 'bg-red-500'}`}></span>
+                <span className={`relative inline-flex rounded-full h-2 w-2 ${data.isOnline ? 'bg-green-500' : 'bg-red-500'}`}></span>
+              </span>
+              <span>{data.isOnline ? 'Online' : 'Offline'}</span>
+            </div>
+          )}
         </div>
-        {lastUpdated && !isLoading && !error && (
-            <p className="text-xs text-muted-foreground shrink-0 pl-2">
-                Updated: {format(lastUpdated, 'HH:mm:ss')}
+        <div className="flex items-center justify-between">
+          <p className="text-xs text-muted-foreground">Source: ESP8266 + BME280 + MQ135 + Blynk API</p>
+          {data?.last_updated_blynk && !isLoading && !error && (
+            <p className="text-xs text-muted-foreground">
+              Last Updated: {data.last_updated_blynk}
             </p>
-        )}
+          )}
+        </div>
       </div>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {indoorMetrics.map((metric) => (

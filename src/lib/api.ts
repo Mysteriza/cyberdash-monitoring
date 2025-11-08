@@ -22,7 +22,9 @@ export const getIndoorData = async (): Promise<IndoorData> => {
     humidity: data.v1 || 0,
     pressure: data.v8 || 0,
     gas: data.v5 || 0,
-    air_quality: air_quality
+    air_quality: air_quality,
+    last_updated_blynk: data.v4 || '',
+    isOnline: data.isOnline || false
   };
 };
 
