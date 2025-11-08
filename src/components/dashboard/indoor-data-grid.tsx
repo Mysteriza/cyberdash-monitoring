@@ -140,7 +140,7 @@ export default function IndoorDataGrid() {
           <p className="text-xs text-muted-foreground">Source: ESP8266 + BME280 + MQ135 + Blynk API</p>
           {data?.last_updated_blynk && !isLoading && !error && (
             <p className="text-xs text-muted-foreground">
-              Last Updated: {data.last_updated_blynk}
+              Updated: {data.last_updated_blynk}
             </p>
           )}
         </div>

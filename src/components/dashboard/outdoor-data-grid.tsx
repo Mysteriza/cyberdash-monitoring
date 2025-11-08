@@ -23,7 +23,7 @@ type OutdoorMetric = {
   key: keyof OutdoorData | keyof OutdoorData['current'];
   unit: string;
   value: (data: OutdoorData) => string | undefined;
-  description?: (data: OutdoorData) => string;
+  description?: (data: OutdoorData) => string | undefined;
   getClassName: (data: OutdoorData) => string;
 };
 
@@ -142,6 +142,10 @@ export default function OutdoorDataGrid() {
       key: 'precipitation', 
       unit: 'mm',
       value: (d) => d.current.precipitation?.toFixed(2),
+      description: (d) => {
+        const probability = d.hourly?.precipitation_probability?.[0];
+        return probability != null ? `Rain Probability: ${probability}%` : undefined;
+      },
       getClassName: (d) => d.current.precipitation > 0 ? 'text-yellow-400' : ''
     },
   ];
@@ -170,16 +174,16 @@ export default function OutdoorDataGrid() {
   return (
     <div className="space-y-6">
       <div>
-        <div className="flex items-start justify-between">
-            <div>
-              <h2 className="text-xl font-semibold text-foreground">Outdoor - {location.name}</h2>
-              <p className="text-xs text-muted-foreground">Source: Open-Meteo API</p>
-            </div>
+        <div className="space-y-1">
+          <h2 className="text-xl font-semibold text-foreground">Outdoor - {location.name}</h2>
+          <div className="flex items-center justify-between">
+            <p className="text-xs text-muted-foreground">Source: Open-Meteo API</p>
             {lastUpdated && !isLoading && !error && (
-                <p className="text-xs text-muted-foreground shrink-0 pl-2">
-                    Updated: {format(lastUpdated, 'HH:mm:ss')}
-                </p>
+              <p className="text-xs text-muted-foreground">
+                Updated: {format(lastUpdated, 'HH:mm:ss')}
+              </p>
             )}
+          </div>
         </div>
         
         <Card className="mt-3 border-border/50 bg-primary/20 text-foreground p-4 backdrop-blur-sm">
