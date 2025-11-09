@@ -12,17 +12,17 @@ export const getIndoorData = async (): Promise<IndoorData> => {
     throw new Error(data.error);
   }
 
-  const gasKohms = data.v5 ? data.v5 / 1024 : 0;
-  let air_quality: 'Good' | 'Moderate' | 'Poor' = 'Good';
-  if (gasKohms > 10) air_quality = 'Poor';
-  else if (gasKohms > 5) air_quality = 'Moderate';
+  const gasValue = data.v5 || 0;
+  let gas_status: 'Low' | 'Moderate' | 'High' = 'Low';
+  if (gasValue > 550) gas_status = 'High';
+  else if (gasValue > 350) gas_status = 'Moderate';
 
   return {
     temperature: data.v0 || 0,
     humidity: data.v1 || 0,
     pressure: data.v8 || 0,
-    gas: data.v5 || 0,
-    air_quality: air_quality,
+    gas: gasValue,
+    gas_status: gas_status,
     last_updated_blynk: data.v4 || '',
     isOnline: data.isOnline || false
   };

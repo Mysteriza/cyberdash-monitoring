@@ -65,8 +65,8 @@ export default function IndoorDataGrid() {
       key: 'temperature', 
       unit: '°C',
       getClassName: (d) => {
-        if (d.temperature > 32 || d.temperature < 18) return 'text-destructive';
-        if (d.temperature > 30 || d.temperature < 20) return 'text-yellow-400';
+        if (d.temperature > 30 || d.temperature < 17) return 'text-destructive';
+        if (d.temperature > 27 || d.temperature < 20) return 'text-yellow-400';
         return 'text-green-500';
       }
     },
@@ -77,7 +77,7 @@ export default function IndoorDataGrid() {
       unit: '%',
       getClassName: (d) => {
         if (d.humidity > 80 || d.humidity < 30) return 'text-destructive';
-        if (d.humidity > 70 || d.humidity < 40) return 'text-yellow-400';
+        if (d.humidity > 60 || d.humidity < 40) return 'text-yellow-400';
         return 'text-green-500';
       }
     },
@@ -93,10 +93,10 @@ export default function IndoorDataGrid() {
       icon: AlertTriangle,
       key: 'gas',
       unit: '',
-      description: (d) => `Air Quality: ${d.air_quality}`,
+      description: (d) => `Gas Status: ${d.gas_status}`,
       getClassName: (d) => {
-        if (d.air_quality === 'Poor') return 'text-destructive';
-        if (d.air_quality === 'Moderate') return 'text-yellow-400';
+        if (d.gas_status === 'High') return 'text-destructive';
+        if (d.gas_status === 'Moderate') return 'text-yellow-400';
         return 'text-green-500';
       }
     },

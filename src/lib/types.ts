@@ -3,7 +3,7 @@ export interface IndoorData {
   humidity: number;
   pressure: number;
   gas: number;
-  air_quality: 'Good' | 'Moderate' | 'Poor';
+  gas_status: 'Low' | 'Moderate' | 'High';
   last_updated_blynk: string;
   isOnline: boolean;
 }

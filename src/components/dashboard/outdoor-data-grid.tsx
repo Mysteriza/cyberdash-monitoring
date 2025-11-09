@@ -79,8 +79,8 @@ export default function OutdoorDataGrid() {
   const airQualityInfo = currentData ? getAirQualityInfo(currentData.european_aqi) : null;
   
   const getTempClassName = (temp: number) => {
-    if (temp > 33 || temp < 15) return 'text-destructive';
-    if (temp > 30 || temp < 18) return 'text-yellow-400';
+    if (temp > 30 || temp < 17) return 'text-destructive';
+    if (temp > 27 || temp < 20) return 'text-yellow-400';
     return 'text-green-500';
   };
   
@@ -94,8 +94,8 @@ export default function OutdoorDataGrid() {
       unit: '%',
       value: (d) => d.current.relative_humidity_2m?.toFixed(2),
       getClassName: (d) => {
-        if (d.current.relative_humidity_2m > 90 || d.current.relative_humidity_2m < 20) return 'text-destructive';
-        if (d.current.relative_humidity_2m > 80 || d.current.relative_humidity_2m < 30) return 'text-yellow-400';
+        if (d.current.relative_humidity_2m > 80 || d.current.relative_humidity_2m < 30) return 'text-destructive';
+        if (d.current.relative_humidity_2m > 60 || d.current.relative_humidity_2m < 40) return 'text-yellow-400';
         return 'text-green-500';
       }
     },
@@ -107,8 +107,8 @@ export default function OutdoorDataGrid() {
       value: (d) => d.current.wind_speed_10m?.toFixed(2),
       description: (d) => degreesToCompass(d.current.wind_direction_10m),
       getClassName: (d) => {
-        if (d.current.wind_speed_10m > 40) return 'text-destructive';
-        if (d.current.wind_speed_10m > 25) return 'text-yellow-400';
+        if (d.current.wind_speed_10m > 30) return 'text-destructive';
+        if (d.current.wind_speed_10m > 20) return 'text-yellow-400';
         return 'text-green-500';
       }
     },
