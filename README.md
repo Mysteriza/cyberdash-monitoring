@@ -6,6 +6,9 @@ CyberDash is my personal, all-in-one status screen. It's a single Next.js app th
 
 The best part? It's location-aware. If you allow location access, it automatically figures out your local currency and pulls relevant weather and country data, defaulting to Indonesian Rupiah (IDR) if not.
 
+## Screenshot
+<img width="1905" height="920" alt="image" src="https://github.com/user-attachments/assets/0b4fa52b-e9b2-4a9f-aeb5-fbc211eddad1" />
+
 ## Features
 
 * 🌡️ **Real-time Indoor Stats:** Hooks directly into a Blynk-powered ESP8266 to stream your indoor temperature, humidity, pressure, and air quality.
