@@ -6,6 +6,9 @@ CyberDash is my personal, all-in-one status screen. It's a single Next.js app th
 
 The best part? It's location-aware. If you allow location access, it automatically figures out your local currency and pulls relevant weather and country data, defaulting to Indonesian Rupiah (IDR) if not.
 
+## Screenshot
+<img width="1905" height="920" alt="image" src="https://github.com/user-attachments/assets/0b4fa52b-e9b2-4a9f-aeb5-fbc211eddad1" />
+
 ## Features
 
 * 🌡️ **Real-time Indoor Stats:** Hooks directly into a Blynk-powered ESP8266 to stream your indoor temperature, humidity, pressure, and air quality.
@@ -62,11 +65,11 @@ You'll just need Node.js (v18.18.0 or later).
     BLYNK_AUTH_TOKEN=YOUR_BLYNK_TOKEN 
 
     # 2. CoinMarketCap API
-    # API key from [https://coinmarketcap.com/api/](https://coinmarketcap.com/api/)
+    # API key from https://coinmarketcap.com/api/
     COINMARKETCAP_API_KEY=YOUR_CMC_API_KEY
 
     # 3. ExchangeRate-API
-    # API key from [https://www.exchangerate-api.com/](https://www.exchangerate-api.com/)
+    # API key from https://www.exchangerate-api.com/
     EXCHANGERATE_APP_ID=YOUR_EXCHANGERATE_API_KEY
     ```
 
