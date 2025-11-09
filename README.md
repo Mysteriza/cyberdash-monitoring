@@ -62,11 +62,11 @@ You'll just need Node.js (v18.18.0 or later).
     BLYNK_AUTH_TOKEN=YOUR_BLYNK_TOKEN 
 
     # 2. CoinMarketCap API
-    # API key from [https://coinmarketcap.com/api/](https://coinmarketcap.com/api/)
+    # API key from https://coinmarketcap.com/api/
     COINMARKETCAP_API_KEY=YOUR_CMC_API_KEY
 
     # 3. ExchangeRate-API
-    # API key from [https://www.exchangerate-api.com/](https://www.exchangerate-api.com/)
+    # API key from https://www.exchangerate-api.com/
     EXCHANGERATE_APP_ID=YOUR_EXCHANGERATE_API_KEY
     ```
 
