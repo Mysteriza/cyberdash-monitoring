@@ -1,6 +1,6 @@
 # CyberDash
 
-A cyberpunk-themed, real-time dashboard for everything you care about.
+A modern-themed, real-time dashboard for everything you care about.
 
 CyberDash is my personal, all-in-one status screen. It's a single Next.js app that pulls data from my local hardware (an ESP8266) and a bunch of global APIs.
 
