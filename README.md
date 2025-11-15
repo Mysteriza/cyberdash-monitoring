@@ -7,7 +7,7 @@ CyberDash is my personal, all-in-one status screen. It's a single Next.js app th
 The best part? It's location-aware. If you allow location access, it automatically figures out your local currency and pulls relevant weather and country data, defaulting to Indonesian Rupiah (IDR) if not.
 
 ## Screenshot
-<img width="1905" height="920" alt="image" src="https://github.com/user-attachments/assets/0b4fa52b-e9b2-4a9f-aeb5-fbc211eddad1" />
+<img width="1905" height="920" alt="image" src="https://github.com/user-attachments/assets/f954f6e3-aae9-4d77-8ee7-43d5bec9fa38" />
 
 ## Features
 
@@ -17,6 +17,7 @@ The best part? It's location-aware. If you allow location access, it automatical
     * **Currency:** The latest USD-to-Your-Currency conversion rate.
     * **Crypto:** The current Bitcoin price in both USD and your local currency.
 * 🌍 **Personalized Country Info:** See your country's flag, population, and capital, pulled automatically based on your location.
+* 🌍 **World Population:** Current world population estimates are available for viewing in real time, based on statistical calculations.
 * 🟢 **Dev Service Status:** Quickly check if GitHub, Cloudflare, OpenAI, and Anthropic are operational before you start debugging.
 * ⚙️ **You're in Control:** A slide-out settings panel lets you change the refresh rate for *every single module*. Set it to update every 10 seconds or only when you click. Your settings are saved locally.
 * 📱 **Responsive Layout:** It's a clean, fixed sidebar on desktop that smartly collapses into the main feed on your phone.
