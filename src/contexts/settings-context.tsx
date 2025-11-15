@@ -11,7 +11,7 @@ interface SettingsContextType {
 }
 
 export const SettingsContext = createContext<SettingsContextType>({
-  settings: { indoor: 15, outdoor: 60, currency: 3600, crypto: 3600 },
+  settings: { indoor: 15, outdoor: 60, currency: 3600, crypto: 3600, services: 60, country: 60 },
   updateSetting: () => {},
   isLoaded: false,
 });

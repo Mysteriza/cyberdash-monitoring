@@ -75,6 +75,24 @@ export interface CountryData {
   population: number;
   capital: string;
   region: string;
+  worldPopulation?: {
+    current: number;
+    today: {
+      births: number;
+      deaths: number;
+      growth: number;
+    };
+    thisYear: {
+      births: number;
+      deaths: number;
+      growth: number;
+    };
+    rates: {
+      birthsPerSecond: number;
+      deathsPerSecond: number;
+      growthPerSecond: number;
+    };
+  };
 }
 
 export type Settings = {
