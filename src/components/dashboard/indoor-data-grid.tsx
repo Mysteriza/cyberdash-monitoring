@@ -137,9 +137,9 @@ export default function IndoorDataGrid() {
           )}
         </div>
         <div className="flex items-center justify-between">
-          <p className="text-xs text-muted-foreground">Source: ESP8266 + BME280 + MQ135 + Blynk API</p>
+          <p className="text-xs text-muted-foreground">Source: ESP8266 + BME280 + MQ135 + Blynk</p>
           {data?.last_updated_blynk && !isLoading && !error && (
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-muted-foreground whitespace-nowrap ml-2">
               Updated: {data.last_updated_blynk}
             </p>
           )}
