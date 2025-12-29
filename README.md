@@ -7,33 +7,35 @@ CyberDash is my personal, all-in-one status screen. It's a single Next.js app th
 The best part? It's location-aware. If you allow location access, it automatically figures out your local currency and pulls relevant weather and country data, defaulting to Indonesian Rupiah (IDR) if not.
 
 ## Screenshot
+
 <img width="1905" height="920" alt="image" src="https://github.com/user-attachments/assets/f954f6e3-aae9-4d77-8ee7-43d5bec9fa38" />
 
 ## Features
 
-* 🌡️ **Real-time Indoor Stats:** Hooks directly into a Blynk-powered ESP8266 to stream your indoor temperature, humidity, pressure, and air quality.
-* 🌦️ **Hyper-Local Weather:** Uses your browser's location to fetch detailed local weather from Open-Meteo. You get current conditions (like UV index and AQI), a 12-hour hourly view, and a full 7-day forecast.
-* 💸 **Location-Aware Finances:** No more mental math. The dashboard automatically detects your local currency and shows:
-    * **Currency:** The latest USD-to-Your-Currency conversion rate.
-    * **Crypto:** The current Bitcoin price in both USD and your local currency.
-* 🌍 **Personalized Country Info:** See your country's flag, population, and capital, pulled automatically based on your location.
-* 🌍 **World Population:** Current world population estimates are available for viewing in real time, based on statistical calculations.
-* 🟢 **Dev Service Status:** Quickly check if GitHub, Cloudflare, OpenAI, and Anthropic are operational before you start debugging.
-* ⚙️ **You're in Control:** A slide-out settings panel lets you change the refresh rate for *every single module*. Set it to update every 10 seconds or only when you click. Your settings are saved locally.
-* 📱 **Responsive Layout:** It's a clean, fixed sidebar on desktop that smartly collapses into the main feed on your phone.
+- 🌡️ **Real-time Indoor Stats:** Hooks directly into a Blynk-powered ESP8266 to stream your indoor temperature, humidity, pressure, and air quality.
+- 🌦️ **Hyper-Local Weather:** Uses your browser's location to fetch detailed local weather from Open-Meteo. You get current conditions (like UV index and AQI), a 12-hour hourly view, and a full 7-day forecast.
+- 🔍 **Location Search:** Manually search and select any location worldwide with auto-suggestions powered by Open-Meteo Geocoding API. Your selected location is saved locally.
+- 💸 **Location-Aware Finances:** No more mental math. The dashboard automatically detects your local currency and shows:
+  - **Currency:** The latest USD-to-Your-Currency conversion rate.
+  - **Crypto:** The current Bitcoin price in both USD and your local currency.
+- 🌍 **Personalized Country Info:** See your country's flag, population, and capital, pulled automatically based on your location.
+- 🌍 **World Population:** Current world population estimates are available for viewing in real time, based on statistical calculations.
+- 🟢 **Dev Service Status:** Quickly check if GitHub, Cloudflare, OpenAI, and Anthropic are operational before you start debugging.
+- ⚙️ **You're in Control:** A slide-out settings panel lets you change the refresh rate for _every single module_. Set it to update every 10 seconds or only when you click. Your settings are saved locally.
+- 📱 **Responsive Layout:** It's a clean, fixed sidebar on desktop that smartly collapses into the main feed on your phone.
 
 ## Tech Stack
 
 This project is built with a modern, straightforward stack:
 
-* **Framework:** Next.js 15.3.3
-* **Language:** TypeScript
-* **Styling:** Tailwind CSS
-* **UI:** shadcn/ui & Radix UI
-* **State:** React Context API (for Settings and Location)
-* **Icons:** Lucide React
-* **Backend:** Next.js API Routes (Route Handlers)
-* **Deployment:** Configured for Firebase App Hosting
+- **Framework:** Next.js 15.3.3
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **UI:** shadcn/ui & Radix UI
+- **State:** React Context API (for Settings and Location)
+- **Icons:** Lucide React
+- **Backend:** Next.js API Routes (Route Handlers)
+- **Deployment:** Configured for Firebase App Hosting
 
 ## Getting Started
 
@@ -46,12 +48,14 @@ You'll just need Node.js (v18.18.0 or later).
 ### Installation
 
 1.  **Clone it:**
+
     ```sh
     git clone https://github.com/Mysteriza/cyberdash-monitoring
     cd cyberdash
     ```
 
 2.  **Install deps:**
+
     ```sh
     npm install
     ```
@@ -63,7 +67,7 @@ You'll just need Node.js (v18.18.0 or later).
     ```env
     # 1. Blynk API
     # Auth token from your Blynk project (for indoor data)
-    BLYNK_AUTH_TOKEN=YOUR_BLYNK_TOKEN 
+    BLYNK_AUTH_TOKEN=YOUR_BLYNK_TOKEN
 
     # 2. CoinMarketCap API
     # API key from https://coinmarketcap.com/api/
@@ -85,9 +89,10 @@ It'll be running at `http://localhost:9002`.
 
 To keep all the API keys safe and off the client, this project uses Next.js API Routes as a secure backend proxy. All data is fetched securely on the server.
 
-* `/api/indoor`: Grabs data from Blynk.
-* `/api/outdoor`: Hits Open-Meteo for weather.
-* `/api/country`: Grabs info from RestCountries.
-* `/api/currency`: Hits ExchangeRate-API.
-* `/api/coinmarketcap`: Hits CoinMarketCap for the BTC price.
-* `/api/status`: Checks all the `statuspage.io` pages.
+- `/api/indoor`: Grabs data from Blynk.
+- `/api/outdoor`: Hits Open-Meteo for weather.
+- `/api/geocoding`: Location search with auto-suggestions via Open-Meteo Geocoding API.
+- `/api/country`: Grabs info from RestCountries.
+- `/api/currency`: Hits ExchangeRate-API.
+- `/api/coinmarketcap`: Hits CoinMarketCap for the BTC price.
+- `/api/status`: Checks all the `statuspage.io` pages.

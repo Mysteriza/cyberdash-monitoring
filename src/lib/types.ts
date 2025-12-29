@@ -113,3 +113,13 @@ export interface Location {
   countryCode: string;
   currencyCode: string;
 }
+
+export interface GeocodingResult {
+  id: number;
+  name: string;
+  latitude: number;
+  longitude: number;
+  country: string;
+  countryCode: string;
+  admin1: string;
+}

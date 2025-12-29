@@ -16,6 +16,7 @@ import { degreesToCompass } from '@/lib/utils';
 import { Separator } from '../ui/separator';
 import HourlyForecast from './hourly-forecast';
 import DailyForecast from './daily-forecast';
+import LocationSearch from './location-search';
 
 type OutdoorMetric = {
   title: string;
@@ -174,16 +175,19 @@ export default function OutdoorDataGrid() {
   return (
     <div className="space-y-6">
       <div>
-        <div className="space-y-1">
-          <h2 className="text-xl font-semibold text-foreground">Outdoor - {location.name}</h2>
-          <div className="flex items-center justify-between">
-            <p className="text-xs text-muted-foreground">Source: Open-Meteo API</p>
-            {lastUpdated && !isLoading && !error && (
-              <p className="text-xs text-muted-foreground">
-                Updated: {format(lastUpdated, 'HH:mm:ss')}
-              </p>
-            )}
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="space-y-1">
+            <h2 className="text-xl font-semibold text-foreground">Outdoor - {location.name}</h2>
+            <div className="flex items-center gap-4">
+              <p className="text-xs text-muted-foreground">Source: Open-Meteo API</p>
+              {lastUpdated && !isLoading && !error && (
+                <p className="text-xs text-muted-foreground">
+                  Updated: {format(lastUpdated, 'HH:mm:ss')}
+                </p>
+              )}
+            </div>
           </div>
+          <LocationSearch />
         </div>
         
         <Card className="mt-3 border-border/50 bg-primary/20 text-foreground p-4 backdrop-blur-sm">
